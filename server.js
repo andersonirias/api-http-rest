@@ -89,3 +89,26 @@ app.put('/api', function(req, res){
   });
 });
 
+app.delete('/api', function(req, res){
+  fs.readFile('usuarios.json', 'utf8', function(err, data){
+    if (err) {
+      var response = {status: 'falha', resultado: err};
+      res.json(response);
+    } else {
+      var obj = JSON.parse(data);
+
+      delete obj.usuarios[(req.body.usuario_id - 1)];
+
+      fs.writeFile('usuarios.json', JSON.stringify(obj), function(err) {
+        if (err) {
+          var response = {status: 'falha', resultado: err};
+          res.json(response);
+        } else {
+          var response = {status: 'sucesso', resultado: 'Registro excluído com sucesso'};
+          res.json(response);
+        }
+      });
+    }
+  });
+});
+
