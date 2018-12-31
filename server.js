@@ -18,3 +18,27 @@ app.use(function(req, res, next){
 
 app.listen(9090, function(){ console.log('Servidor Web rodando na porta 9090') });
 
+app.get('/api', function(req, res){
+  fs.readFile('usuarios.json', 'utf8', function(err, data){
+    if (err) {
+      var response = {status: 'falha', resultado: err};
+      res.json(response);
+    } else {
+      var obj = JSON.parse(data);
+      var result = 'Nenhum usuário foi encontrado';
+
+      obj.usuarios.forEach(function(usuario) {
+        if (usuario != null) {
+          if (usuario.usuario_id == req.query.usuario_id) {
+            result = usuario;
+          }
+        }
+      });
+
+      var response = {status: 'sucesso', resultado: result};
+      res.json(response);
+    }
+  });
+});
+
+
