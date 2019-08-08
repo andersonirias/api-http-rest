@@ -6,9 +6,9 @@ Artigo disponível em meu blog: https://irias.com.br/blog/api-httprest-conceito-
 ### Dependências
 
 * Node.js
-        * Site oficial: https://nodejs.org/en/
+	* Site oficial: https://nodejs.org/en/
 * NPM
-        * Site oficial: https://www.npmjs.com/
+	* Site oficial: https://www.npmjs.com/
 
 ### Utilização
 
